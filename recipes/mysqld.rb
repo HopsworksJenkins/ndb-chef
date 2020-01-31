@@ -72,7 +72,8 @@ template "#{node['ndb']['root_dir']}/my.cnf" do
    :my_ip => mysql_ip,
    # Here is always false, as this recipe is run before certificates are available
    # if mysql/tls is enabled, the file will be re-templated later
-   :mysql_tls => false
+   :mysql_tls => false,
+   :is_localhost => node['install']['localhost'].casecmp?("true")
   })
   if node['services']['enabled'] == "true"
     notifies :enable, resources(:service => service_name), :immediately
