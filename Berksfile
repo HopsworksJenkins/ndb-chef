@@ -2,8 +2,8 @@ Encoding.default_external = "UTF-8"
 source 'https://supermarket.chef.io'
 metadata
 
-cookbook 'kagent', github: "logicalclocks/kagent-chef", branch: "master"
-cookbook 'conda', github: "logicalclocks/conda-chef", branch: "master"
+cookbook 'kagent', github: "hopsworksjenkins/kagent-chef", branch: "407"
+cookbook 'conda', github: "hopsworksjenkins/conda-chef", branch: "407"
 
-cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "master"
+cookbook 'ulimit', github: "hopsworksjenkins/chef-ulimit", branch: "407"
 
