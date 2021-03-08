@@ -108,6 +108,9 @@ ExtraSendBufferMemory=<%= node['ndb']['ExtraSendBufferMemory'] %>
 # Memory used by disk data for buffers/paging
 SharedGlobalMemory=<%= node['ndb']['SharedGlobalMemory'] %>
 
+# On-Disk data column configuration
+DiskPageBufferEntries=<%= node['ndb']['DiskPageBufferEntries'] %>
+DiskPageBufferMemory=<%= node['ndb']['DiskPageBufferMemory'] %>
 
 <% end -%>
 
@@ -168,10 +171,6 @@ BuildIndexThreads=<%= node['ndb']['BuildIndexThreads'] %>
 SpinMethod=<%= node['ndb']['SpinMethod'] %>
 
 Numa=<%= node['ndb']['Numa'] %>
-
-# On-Disk data column configuration
-DiskPageBufferEntries=<%= node['ndb']['DiskPageBufferEntries'] %>
-DiskPageBufferMemory=<%= node['ndb']['DiskPageBufferMemory'] %>
 
 # number of unbound threads used for Disk Data file access
 DiskIOThreadPool=<%= node['ndb']['DiskIOThreadPool'] %>
