@@ -12,6 +12,8 @@ TotalMemoryConfig=<% node['ndb']['TotalMemoryConfig'] -%>
   <% end -%>
 
 ClassicFragmentation=false
+EnableRedoControl=true
+
 <% else -%>
 
 AutomaticMemoryConfig=false
@@ -112,6 +114,23 @@ SharedGlobalMemory=<%= node['ndb']['SharedGlobalMemory'] %>
 DiskPageBufferEntries=<%= node['ndb']['DiskPageBufferEntries'] %>
 DiskPageBufferMemory=<%= node['ndb']['DiskPageBufferMemory'] %>
 
+# https://mikaelronstrom.blogspot.com/2018/08/more-automated-control-in-mysql-cluster.html
+EnableRedoControl=<%= node['ndb']['EnableRedoControl'] %>
+
+  <% if (node['ndb']['EnableRedoControl'] == "0") -%>
+# Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when no restarts 
+# (by this data node or any other data node) are taking place in this MySQL Cluster.
+MaxDiskWriteSpeed=<%= node['ndb']['MaxDiskWriteSpeed'] %>
+
+# Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when one or more data nodes 
+# in this MySQL Cluster are restarting, other than this node.
+MaxDiskWriteSpeedOtherNodeRestart=<%= node['ndb']['MaxDiskWriteSpeedOtherNodeRestart'] %>
+
+MaxDiskWriteSpeedOwnRestart=<%= node['ndb']['MaxDiskWriteSpeedOwnRestart'] %>
+
+MinDiskWriteSpeed=<%= node['ndb']['MinDiskWriteSpeed'] %>
+
+  <% end -%>
 <% end -%>
 
 #The number of copies of the data stored on different nodes in the cluster
@@ -174,24 +193,6 @@ Numa=<%= node['ndb']['Numa'] %>
 
 # number of unbound threads used for Disk Data file access
 DiskIOThreadPool=<%= node['ndb']['DiskIOThreadPool'] %>
-
-# https://mikaelronstrom.blogspot.com/2018/08/more-automated-control-in-mysql-cluster.html
-EnableRedoControl=<%= node['ndb']['EnableRedoControl'] %>
-
-<% if (node['ndb']['EnableRedoControl'] == "0") -%>
-# Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when no restarts 
-# (by this data node or any other data node) are taking place in this MySQL Cluster.
-MaxDiskWriteSpeed=<%= node['ndb']['MaxDiskWriteSpeed'] %>
-
-# Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when one or more data nodes 
-# in this MySQL Cluster are restarting, other than this node.
-MaxDiskWriteSpeedOtherNodeRestart=<%= node['ndb']['MaxDiskWriteSpeedOtherNodeRestart'] %>
-
-MaxDiskWriteSpeedOwnRestart=<%= node['ndb']['MaxDiskWriteSpeedOwnRestart'] %>
-
-MinDiskWriteSpeed=<%= node['ndb']['MinDiskWriteSpeed'] %>
-
-<% end -%>
 
 
 [MYSQLD DEFAULT]
