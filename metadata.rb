@@ -37,8 +37,12 @@ attribute "ndb/MaxNoOfExecutionThreads",
           :description => "Number of execution threads for MySQL Cluster",
           :type => 'string'
 
-attribute "ndb/configuration",
+attribute "ndb/configuration/type",
           :description =>  "Control RonDB configuration. auto | manual Default: auto",
+          :type => 'string'
+
+attribute "ndb/configuration/profile",
+          :description =>  "Predefined configurations. unlimited | tiny Default: unlimited",
           :type => 'string'
 
 attribute "ndb/DataMemory",

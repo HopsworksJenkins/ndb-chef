@@ -3,12 +3,23 @@
 
 [NDBD DEFAULT]
 
-<% if node['ndb']['configuration'].casecmp?("auto") -%>
+<% if node['ndb']['configuration']['type'].casecmp?("auto") -%>
 AutomaticMemoryConfig=true
 AutomaticThreadConfig=true
 
   <% if !node['ndb']['TotalMemoryConfig'].eql?("-1") -%>
 TotalMemoryConfig=<% node['ndb']['TotalMemoryConfig'] -%>
+  <% end -%>
+
+  <% if node['ndb']['configuration']['profile'].casecmp?("tiny") -%>
+NumCPUs=4
+MaxNoOfTables=2000
+MaxNoOfOrderedIndexes=1000
+MaxNoOfUniqueHashIndexes=1000
+MaxNoOfAttributes=20000
+MaxNoOfTriggers=30000
+TransactionMemory=200M
+SharedGlobalMemory=400M
   <% end -%>
 
 ClassicFragmentation=false
