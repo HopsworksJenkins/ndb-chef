@@ -14,7 +14,7 @@ default['ndb']['url']                                 = node['download_url'] + "
 # checksum calculated using: sha256sum /var/www/hops/...tgz | cut -c-12
 default['ndb']['checksum']                            = ""
 default['ndb']['configuration']['type']               = "auto"
-default['ndb']['configuration']['profile']            = "unlimited"
+default['ndb']['configuration']['profile']            = "tiny"
 
 default['ndb']['bind_cpus']                           = "false"
 
